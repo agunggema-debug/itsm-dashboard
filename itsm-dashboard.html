@@ -1,0 +1,519 @@
+<!DOCTYPE html>
+<html lang="id">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Dashboard ITSM - Tailwind CSS</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <style>
+      body {
+        font-family: ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, "Noto Sans", sans-serif;
+      }
+    </style>
+  </head>
+  <body class="bg-gray-100 flex h-screen overflow-hidden">
+    <div class="flex flex-col w-64 bg-gray-800 text-white fixed h-full">
+        <div class="flex items-center justify-center h-16 shadow-lg">
+            <span class="text-xl font-semibold uppercase tracking-wider">ITSM Panel</span>
+        </div>
+        <nav class="flex-1 overflow-y-auto mt-5 px-2">
+          <a href="#dashboard" data-target="content-dashboard" class="sidebar-link flex items-center px-4 py-2 text-gray-300 hover:bg-gray-700 hover:text-white rounded-md transition duration-150 ease-in-out bg-gray-900">
+        Dashboard
+    </a>
+    <a href="#tickets" data-target="content-tickets" class="sidebar-link flex items-center px-4 py-2 text-gray-300 hover:bg-gray-700 hover:text-white rounded-md transition duration-150 ease-in-out mt-1">
+        Semua Tiket
+    </a>
+    <a href="#knowledge" data-target="content-knowledge" class="sidebar-link flex items-center px-4 py-2 text-gray-300 hover:bg-gray-700 hover:text-white rounded-md transition duration-150 ease-in-out mt-1">
+        Basis Pengetahuan
+    </a>
+     <a href="#" class="flex items-center px-4 py-2 text-gray-300 hover:bg-gray-700 hover:text-white rounded-md transition duration-150 ease-in-out mt-1">
+        Manajemen Aset
+    </a>
+        </nav>
+    </div>
+
+    <div class="flex flex-col flex-1 overflow-y-auto ml-64">
+        <header class="w-full bg-white shadow-md sticky top-0 z-10">
+            <div class="flex justify-between items-center py-4 px-6">
+                <h1 class="text-xl font-semibold text-gray-800">Dashboard</h1>
+                <button class="text-sm font-medium text-gray-600 hover:text-gray-900">Admin IT</button>
+            </div>
+        </header>
+    
+    <main class="py-6 px-4 sm:px-6 lg:px-8 flex-1 overflow-y-auto">
+        <div id="content-dashboard" class="content-section">
+        <h2 class="text-2xl font-bold text-gray-900 mb-6">Ringkasan Dashboard ITSM</h2>
+        <hr class="my-6">
+                </div>
+
+                <div id="content-tickets" class="content-section hidden">
+    <div class="flex justify-between items-center mb-6">
+        <h2 class="text-2xl font-bold text-gray-900">Daftar Semua Tiket</h2>
+        <button id="openNewTicketModal" class="bg-indigo-600 hover:bg-indigo-700 text-white font-semibold py-2 px-4 rounded-lg shadow-md transition duration-150 ease-in-out flex items-center">
+            <svg class="h-5 w-5 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6v6m0 0v6m0-6h6m-6 0H6"></path></svg>
+            Tiket Baru
+        </button>
+    </div>
+    
+    <div class="bg-white shadow rounded-lg overflow-x-auto">
+        <table class="min-w-full divide-y divide-gray-200">
+            <thead class="bg-gray-50">
+                <tr>
+                    <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">ID Tiket</th>
+                    <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Judul Insiden</th>
+                    <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Prioritas</th>
+                    <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Status</th>
+                    <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Pelapor</th>
+                    <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Aksi</th>
+                </tr>
+            </thead>
+            <tbody class="bg-white divide-y divide-gray-200">
+                <tr>
+                    <td class="px-6 py-4 whitespace-nowrap text-sm font-semibold text-red-600">INC-128</td>
+                    <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-900">Server aplikasi utama mati mendadak</td>
+                    <td class="px-6 py-4 whitespace-nowrap">
+                        <span class="px-2 inline-flex text-xs leading-5 font-semibold rounded-full bg-red-100 text-red-800">Kritis</span>
+                    </td>
+                    <td class="px-6 py-4 whitespace-nowrap">
+                        <span class="px-2 inline-flex text-xs leading-5 font-semibold rounded-full bg-orange-100 text-orange-800">Baru</span>
+                    </td>
+                    <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">Budi Santoso</td>
+                    <td class="px-6 py-4 whitespace-nowrap text-right text-sm font-medium">
+                        <a href="#" class="text-indigo-600 hover:text-indigo-900">Lihat</a>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900">INC-129</td>
+                    <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-900">Akses folder jaringan lambat</td>
+                    <td class="px-6 py-4 whitespace-nowrap">
+                        <span class="px-2 inline-flex text-xs leading-5 font-semibold rounded-full bg-yellow-100 text-yellow-800">Tinggi</span>
+                    </td>
+                    <td class="px-6 py-4 whitespace-nowrap">
+                        <span class="px-2 inline-flex text-xs leading-5 font-semibold rounded-full bg-blue-100 text-blue-800">Dalam Pengerjaan</span>
+                    </td>
+                    <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">Siti Aisyah</td>
+                    <td class="px-6 py-4 whitespace-nowrap text-right text-sm font-medium">
+                        <a href="#" class="text-indigo-600 hover:text-indigo-900">Lihat</a>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900">REQ-055</td>
+                    <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-900">Permintaan instalasi MS Project</td>
+                    <td class="px-6 py-4 whitespace-nowrap">
+                        <span class="px-2 inline-flex text-xs leading-5 font-semibold rounded-full bg-green-100 text-green-800">Rendah</span>
+                    </td>
+                    <td class="px-6 py-4 whitespace-nowrap">
+                        <span class="px-2 inline-flex text-xs leading-5 font-semibold rounded-full bg-green-500 text-white">Selesai</span>
+                    </td>
+                    <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">Joko Widodo</td>
+                    <td class="px-6 py-4 whitespace-nowrap text-right text-sm font-medium">
+                        <a href="#" class="text-indigo-600 hover:text-indigo-900">Lihat</a>
+                    </td>
+                </tr>
+                </tbody>
+        </table>
+    </div>
+</div>
+    
+    <div id="content-knowledge" class="content-section hidden">
+        <h2 class="text-2xl font-bold text-gray-900 mb-6">Manajemen Basis Pengetahuan (Knowledge Base)</h2>
+        <div class="p-6 bg-white shadow rounded-lg">
+            <p class="text-gray-600" style="font-size: large;">Di halaman ini akan ada daftar artikel dan solusi yang sering digunakan.</p>
+            <ul class="list-disc list-inside mt-4 p-4 bg-gray-50 rounded-lg">
+                <li>Cara Reset Password Akun Jaringan</li>
+                <li>Panduan Penggunaan VPN Perusahaan</li>
+                <li>Solusi Error Printer Jaringan</li>
+            </ul>
+        </div>
+    </div>
+
+      <div class="px-4 py-4 sm:px-0">
+        <h2 class="text-xl font-semibold leading-7 text-gray-900 mb-4">Metrik Kunci</h2>
+        <div class="grid grid-cols-1 gap-5 sm:grid-cols-2 lg:grid-cols-4">
+          <div class="bg-white overflow-hidden shadow rounded-lg p-5">
+            <div class="flex items-center">
+              <div class="p-3 rounded-full bg-indigo-100">
+                <svg class="h-6 w-6 text-indigo-600" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 5v2m0 4v2m0 4v2M5 5h14a2 2 0 012 2v3m-2 2v6a2 2 0 01-2 2H5a2 2 0 01-2-2v-6m0 0H3m14 0h-4"></path>
+                </svg>
+              </div>
+              <div class="ml-4">
+                <dt class="text-sm font-medium text-gray-500 truncate">Tiket Terbuka</dt>
+                <dd id="openTickets" class="text-3xl font-bold text-gray-900">0</dd>
+              </div>
+            </div>
+          </div>
+
+          <div class="bg-white overflow-hidden shadow rounded-lg p-5">
+            <div class="flex items-center">
+              <div class="p-3 rounded-full bg-green-100">
+                <svg class="h-6 w-6 text-green-600" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6v6m0 0v6m0-6h6m-6 0H6"></path>
+                </svg>
+              </div>
+              <div class="ml-4">
+                <dt class="text-sm font-medium text-gray-500 truncate">Baru Hari Ini</dt>
+                <dd id="newTicketsToday" class="text-3xl font-bold text-gray-900">0</dd>
+              </div>
+            </div>
+          </div>
+
+          <div class="bg-white overflow-hidden shadow rounded-lg p-5">
+            <div class="flex items-center">
+              <div class="p-3 rounded-full bg-red-100">
+                <svg class="h-6 w-6 text-red-600" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z"></path>
+                </svg>
+              </div>
+              <div class="ml-4">
+                <dt class="text-sm font-medium text-gray-500 truncate">Tiket Kritis</dt>
+                <dd id="criticalTickets" class="text-3xl font-bold text-gray-900">0</dd>
+              </div>
+            </div>
+          </div>
+
+          <div class="bg-white overflow-hidden shadow rounded-lg p-5">
+            <div class="flex items-center">
+              <div class="p-3 rounded-full bg-yellow-100">
+                <svg class="h-6 w-6 text-yellow-600" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                  <path
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                    stroke-width="2"
+                    d="M14 10h4.764a2 2 0 011.789 2.894l-3.5 7A2 2 0 0115.263 21h-8.526a2 2 0 01-1.789-2.894l3.5-7A2 2 0 019.737 10H12v2m0 0l-1 5m.5-8l2.5-5a2 2 0 012-1h4"
+                  ></path>
+                </svg>
+              </div>
+              <div class="ml-4">
+                <dt class="text-sm font-medium text-gray-500 truncate">Kepuasan Pelanggan</dt>
+                <dd id="customerSatisfaction" class="text-3xl font-bold text-gray-900">0%</dd>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="grid grid-cols-1 lg:grid-cols-3 gap-5 mt-6">
+        <div class="lg:col-span-2 bg-white overflow-hidden shadow rounded-lg p-6">
+          <h3 class="text-lg font-medium leading-6 text-gray-900 mb-4">Status Tiket Saat Ini</h3>
+          <div class="h-64">
+            <canvas id="ticketStatusChart"></canvas>
+          </div>
+        </div>
+
+        <div class="lg:col-span-1 bg-white overflow-hidden shadow rounded-lg p-6">
+          <h3 class="text-lg font-medium leading-6 text-gray-900 mb-4">Tiket Berdasarkan Prioritas</h3>
+
+          <ul class="divide-y divide-gray-200">
+            <li class="py-3 flex justify-between items-center">
+              <span class="text-sm font-medium text-red-600">P1 - Kritis</span>
+              <span class="text-sm font-semibold text-gray-900">5</span>
+            </li>
+            <li class="py-3 flex justify-between items-center">
+              <span class="text-sm font-medium text-yellow-600">P2 - Tinggi</span>
+              <span class="text-sm font-semibold text-gray-900">18</span>
+            </li>
+            <li class="py-3 flex justify-between items-center">
+              <span class="text-sm font-medium text-blue-600">P3 - Sedang</span>
+              <span class="text-sm font-semibold text-gray-900">75</span>
+            </li>
+            <li class="py-3 flex justify-between items-center">
+              <span class="text-sm font-medium text-green-600">P4 - Rendah</span>
+              <span class="text-sm font-semibold text-gray-900">47</span>
+            </li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="mt-6 bg-white overflow-hidden shadow rounded-lg p-6">
+        <h3 class="text-lg font-medium leading-6 text-gray-900 mb-4">10 Tiket Terbuka Terbaru</h3>
+
+        <div class="overflow-x-auto">
+          <table class="min-w-full divide-y divide-gray-200">
+            <thead class="bg-gray-50">
+              <tr>
+                <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">ID Tiket</th>
+                <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Judul</th>
+                <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Prioritas</th>
+                <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Status</th>
+                <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Tanggal Dibuat</th>
+              </tr>
+            </thead>
+            <tbody class="bg-white divide-y divide-gray-200">
+              <tr>
+                <td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900">INC-2025-00125</td>
+                <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">Koneksi printer di lantai 3 gagal</td>
+                <td class="px-6 py-4 whitespace-nowrap">
+                  <span class="px-2 inline-flex text-xs leading-5 font-semibold rounded-full bg-yellow-100 text-yellow-800">Tinggi</span>
+                </td>
+                <td class="px-6 py-4 whitespace-nowrap">
+                  <span class="px-2 inline-flex text-xs leading-5 font-semibold rounded-full bg-blue-100 text-blue-800">Dalam Pengerjaan</span>
+                </td>
+                <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">2 Des 2025</td>
+              </tr>
+              <tr>
+                <td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900">INC-2025-00126</td>
+                <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">Permintaan instalasi software desain</td>
+                <td class="px-6 py-4 whitespace-nowrap">
+                  <span class="px-2 inline-flex text-xs leading-5 font-semibold rounded-full bg-green-100 text-green-800">Rendah</span>
+                </td>
+                <td class="px-6 py-4 whitespace-nowrap">
+                  <span class="px-2 inline-flex text-xs leading-5 font-semibold rounded-full bg-gray-100 text-gray-800">Baru</span>
+                </td>
+                <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">2 Des 2025</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </main>
+    <!-- pop-up modal tiket baru bisa ditambahkan di sini -->
+
+    <div id="newTicketModal" class="fixed inset-0 bg-gray-600 bg-opacity-75 z-50 hidden flex items-center justify-center">
+    <div class="bg-white rounded-lg shadow-xl w-full max-w-lg mx-4">
+        
+        <div class="px-6 py-4 border-b border-gray-200 flex justify-between items-center">
+            <h3 class="text-xl font-semibold text-gray-900">Buat Tiket Insiden Baru</h3>
+            <button id="closeNewTicketModal" class="text-gray-400 hover:text-gray-600">
+                <svg class="h-6 w-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path></svg>
+            </button>
+        </div>
+        
+        <form class="p-6 space-y-4">
+            <div>
+                <label for="ticketTitle" class="block text-sm font-medium text-gray-700">Judul Insiden</label>
+                <input type="text" id="ticketTitle" class="mt-1 block w-full border border-gray-300 rounded-md shadow-sm p-2 focus:ring-indigo-500 focus:border-indigo-500" placeholder="Contoh: Komputer saya tidak bisa booting">
+            </div>
+            
+            <div>
+                <label for="ticketDescription" class="block text-sm font-medium text-gray-700">Deskripsi Detail</label>
+                <textarea id="ticketDescription" rows="4" class="mt-1 block w-full border border-gray-300 rounded-md shadow-sm p-2 focus:ring-indigo-500 focus:border-indigo-500" placeholder="Jelaskan masalah yang Anda hadapi secara detail..."></textarea>
+            </div>
+
+            <div class="grid grid-cols-2 gap-4">
+                <div>
+                    <label for="ticketPriority" class="block text-sm font-medium text-gray-700">Prioritas</label>
+                    <select id="ticketPriority" class="mt-1 block w-full border border-gray-300 rounded-md shadow-sm p-2 focus:ring-indigo-500 focus:border-indigo-500">
+                        <option>Rendah (P4)</option>
+                        <option>Sedang (P3)</option>
+                        <option>Tinggi (P2)</option>
+                        <option>Kritis (P1)</option>
+                    </select>
+                </div>
+                <div>
+                    <label for="ticketReporter" class="block text-sm font-medium text-gray-700">Pelapor</label>
+                    <input type="text" id="ticketReporter" class="mt-1 block w-full border border-gray-300 rounded-md shadow-sm p-2 focus:ring-indigo-500 focus:border-indigo-500" value="Admin IT" disabled>
+                </div>
+            </div>
+        </form>
+        
+        <div class="px-6 py-4 bg-gray-50 border-t border-gray-200 flex justify-end">
+            <button id="cancelNewTicket" class="bg-gray-200 hover:bg-gray-300 text-gray-800 font-semibold py-2 px-4 rounded-lg mr-2 transition duration-150 ease-in-out">Batal</button>
+            <button type="submit" class="bg-indigo-600 hover:bg-indigo-700 text-white font-semibold py-2 px-4 rounded-lg shadow-md transition duration-150 ease-in-out">Kirim Tiket</button>
+        </div>
+    </div>
+</div>
+
+  </body>
+  <script>
+    // 1. Fungsi Simulasi API (Mengembalikan Promise)
+    function fetchDashboardData() {
+      return new Promise((resolve) => {
+        // Simulasi penundaan jaringan 500ms
+        setTimeout(() => {
+          const data = {
+            openTickets: 145,
+            newTicketsToday: 28,
+            criticalTickets: 5,
+            customerSatisfaction: 92, // Nilai dalam persen
+            // Data untuk grafik (akan digunakan di langkah 2)
+            ticketStatus: {
+              labels: ["Baru", "Dalam Proses", "Menunggu Pihak Ketiga", "Selesai"],
+              data: [40, 60, 15, 30],
+            },
+          };
+          resolve(data);
+        }, 500);
+      });
+    }
+
+    // 2. Fungsi untuk Memperbarui Kartu Metrik
+    async function updateMetricCards() {
+      try {
+        // Ambil data dari API simulasi
+        const data = await fetchDashboardData();
+
+        // Perbarui elemen HTML
+        document.getElementById("openTickets").innerText = data.openTickets.toLocaleString();
+        document.getElementById("newTicketsToday").innerText = data.newTicketsToday.toLocaleString();
+        document.getElementById("criticalTickets").innerText = data.criticalTickets.toLocaleString();
+        document.getElementById("customerSatisfaction").innerText = data.customerSatisfaction + "%";
+
+        console.log("Data metrik berhasil dimuat.");
+      } catch (error) {
+        console.error("Gagal memuat data dashboard:", error);
+      }
+    }
+
+    // Panggil fungsi saat DOM selesai dimuat
+    document.addEventListener("DOMContentLoaded", updateMetricCards);
+    // 3. Fungsi untuk Menggambar Grafik Status Tiket
+    function drawTicketStatusChart(ticketStatusData) {
+      const ctx = document.getElementById("ticketStatusChart").getContext("2d");
+
+      new Chart(ctx, {
+        type: "doughnut", // Kita gunakan Doughnut Chart untuk status/proporsi
+        data: {
+          labels: ticketStatusData.labels,
+          datasets: [
+            {
+              label: "Jumlah Tiket",
+              data: ticketStatusData.data,
+              backgroundColor: [
+                "rgb(59, 130, 246)", // Tailwind blue-500 (Baru)
+                "rgb(249, 115, 22)", // Tailwind orange-500 (Dalam Proses)
+                "rgb(139, 92, 246)", // Tailwind violet-500 (Menunggu Pihak Ketiga)
+                "rgb(16, 185, 129)", // Tailwind emerald-500 (Selesai)
+              ],
+              hoverOffset: 4,
+            },
+          ],
+        },
+        options: {
+          responsive: true,
+          maintainAspectRatio: false, // Penting agar chart memenuhi div parent
+          plugins: {
+            legend: {
+              position: "bottom",
+            },
+            title: {
+              display: true,
+              text: "Distribusi Tiket Berdasarkan Status",
+            },
+          },
+        },
+      });
+    }
+
+    // 4. Modifikasi updateMetricCards untuk Menggambar Grafik
+    async function updateMetricCards() {
+      try {
+        const data = await fetchDashboardData();
+
+        // ... (kode pembaruan kartu metrik tetap sama) ...
+        document.getElementById("openTickets").innerText = data.openTickets.toLocaleString();
+        document.getElementById("newTicketsToday").innerText = data.newTicketsToday.toLocaleString();
+        document.getElementById("criticalTickets").innerText = data.criticalTickets.toLocaleString();
+        document.getElementById("customerSatisfaction").innerText = data.customerSatisfaction + "%";
+
+        // Panggil fungsi gambar grafik setelah data dimuat
+        drawTicketStatusChart(data.ticketStatus);
+
+        console.log("Data metrik dan grafik berhasil dimuat.");
+      } catch (error) {
+        console.error("Gagal memuat data dashboard:", error);
+      }
+    }
+    // Fungsi untuk Menampilkan Konten yang Sesuai dan Mengupdate Tautan Aktif
+function setupSidebarNavigation() {
+    const sidebarLinks = document.querySelectorAll('.sidebar-link');
+    const contentSections = document.querySelectorAll('.content-section');
+
+    sidebarLinks.forEach(link => {
+        link.addEventListener('click', function(e) {
+            e.preventDefault();
+            
+            // 1. Dapatkan ID Konten Target
+            const targetId = this.getAttribute('data-target');
+            
+            // 2. Sembunyikan Semua Konten
+            contentSections.forEach(section => {
+                section.classList.add('hidden');
+            });
+            
+            // 3. Tampilkan Konten Target
+            const targetContent = document.getElementById(targetId);
+            if (targetContent) {
+                targetContent.classList.remove('hidden');
+                
+                // Jika konten dashboard dimuat, panggil lagi pembaruan data dan grafik
+                if (targetId === 'content-dashboard') {
+                    updateMetricCards(); 
+                }
+            }
+            
+            // 4. Update Tautan Sidebar Aktif (Active State)
+            // Hapus status aktif dari semua link
+            sidebarLinks.forEach(l => {
+                // Hapus warna indigo/aktif (defaultnya adalah bg-gray-900)
+                l.classList.remove('bg-gray-900');
+            });
+            // Tambahkan status aktif pada link yang diklik
+            this.classList.add('bg-gray-900');
+            
+            // Opsional: Perbarui URL (tanpa reload) untuk bookmarking/history
+            history.pushState(null, '', this.href);
+        });
+    });
+}
+
+// Panggil fungsi saat DOM selesai dimuat (Tambahkan di akhir event listener 'DOMContentLoaded')
+document.addEventListener('DOMContentLoaded', () => {
+    updateMetricCards(); // Memuat data dan grafik saat dashboard dimuat pertama kali
+    setupSidebarNavigation(); // Mengaktifkan fungsionalitas navigasi
+});
+// Fungsi untuk Mengontrol Modal Tiket Baru
+function setupModalControl() {
+    const modal = document.getElementById('newTicketModal');
+    const openBtn = document.getElementById('openNewTicketModal');
+    const closeBtn = document.getElementById('closeNewTicketModal');
+    const cancelBtn = document.getElementById('cancelNewTicket');
+    
+    // Fungsi untuk menutup modal
+    const closeModal = () => {
+        modal.classList.add('hidden');
+    };
+    
+    // 1. Buka Modal
+    if (openBtn) { // Pastikan tombol ada (hanya ada di halaman Semua Tiket)
+        openBtn.addEventListener('click', () => {
+            modal.classList.remove('hidden');
+        });
+    }
+
+    // 2. Tutup Modal
+    closeBtn.addEventListener('click', closeModal);
+    cancelBtn.addEventListener('click', closeModal);
+    
+    // Tutup saat menekan tombol ESC
+    document.addEventListener('keydown', (e) => {
+        if (e.key === 'Escape' && !modal.classList.contains('hidden')) {
+            closeModal();
+        }
+    });
+
+    // Tutup saat mengklik di luar modal (opsional, tapi bagus untuk UX)
+    modal.addEventListener('click', (e) => {
+        if (e.target.id === 'newTicketModal') {
+            closeModal();
+        }
+    });
+
+    // *Simulasi Submit (Untuk demo)
+    const submitBtn = modal.querySelector('button[type="submit"]');
+    submitBtn.addEventListener('click', (e) => {
+        e.preventDefault();
+        alert('Tiket berhasil disubmit! (Ini adalah simulasi, tidak ada data yang disimpan)');
+        closeModal();
+    });
+}
+
+// Panggil fungsi saat DOM selesai dimuat (Tambahkan di event listener 'DOMContentLoaded')
+document.addEventListener('DOMContentLoaded', () => {
+    updateMetricCards();
+    setupSidebarNavigation();
+    setupModalControl(); // Panggil fungsi setup modal
+});
+  </script>
+</html>
