@@ -34,7 +34,7 @@ Karena proyek ini menggunakan CDN (Content Delivery Network), langkah instalasi 
 
 1.  **Kloning Repositori** (Jika sudah ada di GitHub):
     ```bash
-    git clone [https://github.com/agunggema-debug/itsm-dashboard.git](https://github.com/agunggema-debug/itsm-dashboard.git)
+    git clone [https://github.com/agunggema-debug/itsm-dashboard.git]
     cd itsm-dashboard
     ```
 2.  **Buka File:** Buka file `index.html` (atau nama file HTML utama Anda) langsung di *browser* Anda.
